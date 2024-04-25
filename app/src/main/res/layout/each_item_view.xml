@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="50.00dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/acName"
+            android:text="AcName"
+            android:padding="15.00dp"
+            android:textSize="16.00sp"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:layout_width="250.00dp"
+            android:layout_height="50.00dp"
+            android:id="@+id/password"
+            android:text="AcName"
+            android:inputType="numberPassword"
+            android:padding="15.00dp"
+            android:textSize="16.00sp"
+            android:textColor="@color/black"/>
+        <ImageView
+            android:layout_width="20.00dp"
+            android:layout_height="20.00dp"
+            android:layout_gravity="center"
+            android:src="@drawable/rightarrow"/>
+
+
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>
