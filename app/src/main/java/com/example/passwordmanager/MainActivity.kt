@@ -6,13 +6,21 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.RecyclerView
 import com.example.passwordmanager.databinding.ActivityMainBinding
+import com.example.passwordmanager.viewModel.myViewModel
+
 
 class MainActivity : AppCompatActivity() {
     private val binding:ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
-    private lateinit var listView:ListView
+
+//    private lateinit var adapter: CustomAdapter
+//    private lateinit var listView: ListView
+//    private lateinit var passwordData:List<dataClass>
+    private lateinit var rv:RecyclerView
+    private  lateinit var  viewModel : myViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -23,10 +31,34 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        listView = binding.listView
-        val data = arrayListOf("Item 1", "Item 2", "Item 3")
-        val adapter = CustomAdapter(this, data)
-        listView.adapter = adapter
+        viewModel = myViewModel()
+
+
+
+        viewModel.passwordManager.observe(this){
+           val  adapter = CustomAdapter(  it)
+            rv = binding.rvdata
+            rv.adapter = adapter
+        }
+
+
+
+
+        binding.addPass.setOnClickListener{
+
+                    val bottomSheet = BottomSheetDialog()
+                    bottomSheet.show(
+                        supportFragmentManager,
+                        "ModalBottomSheet"
+                    )
+                }
+
+
+
+
 
     }
 }
+
+
+

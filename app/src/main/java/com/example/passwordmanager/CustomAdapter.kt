@@ -1,25 +1,39 @@
 package com.example.passwordmanager
 
-import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.TextView
+import androidx.lifecycle.LiveData
+import androidx.recyclerview.widget.RecyclerView
+import com.example.passwordmanager.Room.PassInfo
+import com.example.passwordmanager.databinding.EachItemViewBinding
 
-class CustomAdapter(context: Context, private val data: List<String>) : ArrayAdapter<String>(context, R.layout.each_item_view, data) {
 
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        var itemView = convertView
-        if (itemView == null) {
-            itemView = LayoutInflater.from(context).inflate(R.layout.each_item_view, parent, false)
-        }
+class CustomAdapter(val itemList: List<PassInfo>) :RecyclerView.Adapter<CustomAdapter.myViewHolder>(){
 
-        val textViewItem = itemView!!.findViewById<TextView>(R.id.acName)
-        val textViewItem2 = itemView.findViewById<TextView>(R.id.password)
-        textViewItem.text = data[position]
-        textViewItem2.text = data[position]
 
-        return itemView
+
+    class myViewHolder(val binding: EachItemViewBinding): RecyclerView.ViewHolder(binding.root) {
+
     }
+
+
+    override fun onCreateViewHolder(parent: ViewGroup, p1: Int): myViewHolder {
+
+        return myViewHolder(EachItemViewBinding.inflate(LayoutInflater.from(parent.context),parent, false))
+    }
+
+    override fun getItemCount(): Int {
+        return itemList.size
+    }
+
+    override fun onBindViewHolder(holder: myViewHolder, position: Int) {
+
+        val data: PassInfo = itemList[position]
+
+         holder.binding.apply {
+             acName.text = data.accountName.toString()
+             password.text = data.pass.toString()
+         }
+    }
+
 }
